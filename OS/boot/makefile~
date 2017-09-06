@@ -1,0 +1,2 @@
+boot:
+	nasm boot.asm
