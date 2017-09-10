@@ -1,6 +1,0 @@
-gcc -c ff.c
-gcc -c diskio.c
-gcc -c ffunicode.c
-gcc -c ffsystem.c
-
-

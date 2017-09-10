@@ -47,6 +47,10 @@ extern void out_word(int port,int value);
 //230X240 256色
 extern void os_point(int index,int color);
 
-extern int getStack();
+extern void load_IDT(int*p);
+
+extern void _R8259AHandler();
+
+extern void hwd00();
 #endif
 

@@ -4,8 +4,8 @@
 #include "time.h"
 #include "fs/ff.h"
 
-//void iar();
-//void time();
+#include "8259a.h"
+
 int main(int argc, char*argv[]) {
 
 	int i = 0, j = 0, result = 0;
@@ -19,40 +19,27 @@ int main(int argc, char*argv[]) {
 	strcat(str, "ruizhi\n");
 	print_str(str, strlen(str));
 
-	sprintf(str, "nihao %d haha name:%s sex:%C height:%X\n", 25, "zhangsan",
+	sprintf(str, "))) %d haha name:%s sex:%C height:%X\n", 25, "zhangsan",
 			'M', 175);
 	print_str(str, strlen(str));
+
+	init_8259a();
+	writeCloc();
+	int c=0;
+	//int b=1/c;
 	while (1) {
 		sys_read_time(&tm);
 		sprintf(str, "%d-%d-%d  %d:%d:%d ", tm.year, tm.month, tm.day, tm.hour,
 				tm.minute, tm.second);
 		print_pstr(30,1,str, strlen(str));
 	}
-
 	while (1);
 	return 0;
 
 }
-/*
- void iar()
- {
- //ICW1
- out_byte(0x20,0x11);
- out_byte(0xA0,0x11);
- //ICW2
- out_byte(0x21,0x20);
- out_byte(0xa1,0x28);
- //ICW3
- out_byte(0x21,0x04);
- out_byte(0xa1,0x02);
- //ICW4
- out_byte(0x21,0x01);
- out_byte(0xa1,0x01);
- //OCW1
- out_byte(0x21,0xFE);
- out_byte(0xa1,0xFF);
- }
- */
+
+
+
 void file() {
 	//FATFS FatFs;
 	//FIL fil,fil2;        /* File object */
@@ -67,22 +54,3 @@ void file() {
 	 */
 	//-----------------------------
 }
-/*
- void time()
- {
-
-
- time_t tm;
- while(1)
- {
- sys_read_time(&tm);
- print_number(20,16,tm.year);
- print_number(20,17,tm.month);
- print_number(20,18,tm.day);
- print_number(20,19,tm.hour);
- print_number(20,20,tm.minute);
- print_number(20,21,tm.second);
- print_number(20,22,tm.week);
- }
- }
- */
